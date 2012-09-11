@@ -18,14 +18,6 @@ module Users
       redirect '/login' unless current_user || login_path?(request.path_info)
     end
 
-    get '/' do
-      User.all.to_json
-    end
-
-    get '/:login' do
-      User.where(login: params[:login]).first.to_json
-    end
-
     # Github oauth actions
 
     get '/auth/:name/callback' do
@@ -47,6 +39,16 @@ module Users
 
     error 403 do
       'Access forbidden'
+    end
+
+    # API
+
+    get '/' do
+      User.all.to_json
+    end
+
+    get '/:login' do
+      User.where(login: params[:login]).first.to_json
     end
 
     private
