@@ -6,8 +6,12 @@ module Users
       end
     end
 
+    configure :production do
+      Mongoid.load! File.expand_path(File.dirname(__FILE__) + '../../../config/mongoid.yml', :production)
+    end
+
     configure :development do
-      Mongoid.load! File.expand_path(File.dirname(__FILE__) + '../../../config/mongoid.yml')
+      Mongoid.load! File.expand_path(File.dirname(__FILE__) + '../../../config/mongoid.yml', :development)
     end
 
     before do
