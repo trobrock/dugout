@@ -15,7 +15,14 @@ module Users
     end
 
     before do
-      redirect '/login' unless current_user || login_path?(request.path_info)
+      session['postback'] = params['postback'] if params['postback']
+      if current_user && session['postback']
+        page = session['postback']
+        session.delete('postback')
+        redirect "#{page}?token=#{current_user._id}"
+      elsif !current_user && !login_path?(request.path_info)
+        redirect '/login'
+      end
     end
 
     # Github oauth actions
@@ -29,7 +36,7 @@ module Users
       return 403 unless user.has_permission?
       user.save!
 
-      session['user_id'] = user._id
+      session['token'] = user._id
       redirect '/'
     end
 
@@ -47,6 +54,10 @@ module Users
       User.all.to_json
     end
 
+    get '/myself' do
+      current_user.to_json
+    end
+
     get '/:login' do
       User.where(login: params[:login]).first.to_json
     end
@@ -54,7 +65,8 @@ module Users
     private
 
     def current_user
-      session['user_id'] && User.where(:_id => session['user_id']).first
+      token = params['token'] || session['token']
+      token && User.where(:_id => token).first
     end
 
     def login_path?(path)
