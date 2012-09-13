@@ -8,9 +8,6 @@ module Users
     index({ login: 1 }, { unique: true })
 
     def self.from_oauth(login, oauth_token)
-      p login
-      p oauth_token
-      p self.where(login: login)
       found = self.where(login: login).first
       if found
         found.oauth_token = oauth_token
