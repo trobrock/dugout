@@ -8,9 +8,9 @@ require 'omniauth'
 require 'omniauth/strategies/github'
 require 'octokit'
 
-require 'users/models/user'
-require 'users/app'
+require 'dugout/models/user'
+require 'dugout/app'
 
-module Users
+module Dugout
   ALLOWED_ORG = "outright"
 end

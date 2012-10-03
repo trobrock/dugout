@@ -1,4 +1,4 @@
-module Users
+module Dugout
   class App < Sinatra::Base
     configure do
       use ::OmniAuth::Builder do

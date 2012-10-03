@@ -1,1 +1,1 @@
-Make Users::ALLOWED_ORG configurable
+Make Dugout::ALLOWED_ORG configurable

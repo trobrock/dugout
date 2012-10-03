@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/lib/users')
+require File.expand_path(File.dirname(__FILE__) + '/lib/dugout')
 
 namespace :db do
   task :create_indexes do

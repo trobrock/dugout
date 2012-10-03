@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: mongoid
+      database: dugout
       hosts:
         - localhost:27017
 production:

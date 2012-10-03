@@ -1,5 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/lib/users')
+require File.expand_path(File.dirname(__FILE__) + '/lib/dugout')
 
 use Rack::Session::Cookie
 
-run Users::App.new
+run Dugout::App.new

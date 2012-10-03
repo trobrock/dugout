@@ -1,4 +1,4 @@
-module Users
+module Dugout
   class User
     include Mongoid::Document
 
